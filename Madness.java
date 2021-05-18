@@ -76,7 +76,7 @@ class Madness {
     public int mxz;
     public int cxz;
     /* variable for screen shake */
-    public int shakedam;
+    // public int shakedam;
 
     /**
      * universal rate that speed decreases when it exceeds swits[0][2], that is, top speed
@@ -111,7 +111,7 @@ class Madness {
             if (k > 330 || k < 30)
                 byte1 = 1;
             if (byte0 * byte1 == 0)
-                shakedam = (int) ((Math.abs(f) + shakedam) / 2.0F);
+                //shakedam = (int) ((Math.abs(f) + shakedam) / 2.0F);
             if (im == 0 || colidim)
                 xt.crash(f, byte1 * byte0);
             if (byte1 * byte0 == 0 || mtouch) {
@@ -264,7 +264,7 @@ class Madness {
         rpd = record;
         xt = xtgraphics;
         im = i;
-        shakedam = 0;
+        //shakedam = 0;
         stat = new Stat();
     }
 
@@ -276,7 +276,7 @@ class Madness {
                 f -= 100F;
             if (f < -100F)
                 f += 100F;
-            shakedam = (int) ((Math.abs(f) + shakedam) / 2.0F);
+            //shakedam = (int) ((Math.abs(f) + shakedam) / 2.0F);
             if (im == 0 || colidim)
                 xt.crash(f, 0);
             for (int j = 0; j < conto.npl; j++) {
@@ -552,7 +552,7 @@ class Madness {
                 f -= 100F;
             if (f < -100F)
                 f += 100F;
-            shakedam = (int) ((Math.abs(f) + shakedam) / 2.0F);
+            //shakedam = (int) ((Math.abs(f) + shakedam) / 2.0F);
             if (im == 0 || colidim)
                 xt.crash(f, 0);
             for (int j = 0; j < conto.npl; j++) {
