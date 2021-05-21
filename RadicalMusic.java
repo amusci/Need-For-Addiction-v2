@@ -13,6 +13,7 @@ import javazoom.jl.decoder.JavaLayerException;
 import jl.player.PausablePlayer;
 import org.newdawn.easyogg.OggClip;
 import sun.audio.AudioPlayer;
+import java.util.Arrays;
 
 enum MusicType {
     MOD,
@@ -22,6 +23,8 @@ enum MusicType {
 }
 
 public class RadicalMusic {
+
+
     private BufferedInputStream is;
     private Sequencer sequencer;
     private boolean paused = false;
@@ -36,7 +39,37 @@ public class RadicalMusic {
     private byte modf[];
     MusicType musicType;
 
+
+
     public RadicalMusic(String filename) {
+
+        {
+            try {
+                Receiver receiver;
+                Synthesizer synthesizer;
+                sequencer = MidiSystem.getSequencer();
+                synthesizer = MidiSystem.getSynthesizer();
+
+                HLogger.log("MidiDeviceInfo: ");
+                Arrays.stream(MidiSystem.getMidiDeviceInfo()).forEach(i -> {
+                    HLogger.log("\t" + i.getName() + ": " + i.getDescription());
+                });
+
+                Soundbank soundbank = synthesizer.getDefaultSoundbank();
+
+                if (soundbank == null) {
+                    receiver = MidiSystem.getReceiver();
+                    HLogger.log("using hardware soundbank");
+                } else {
+                    synthesizer.loadAllInstruments(soundbank);
+                    receiver = synthesizer.getReceiver();
+                    HLogger.log("using software soundbank: " + soundbank.getName() + " " + soundbank.getDescription());
+                }
+                sequencer.getTransmitter().setReceiver(receiver);
+
+            } catch (Exception ignored) {
+            }
+        }
         if (filename.endsWith(".mp3")) {
             this.filename = filename;
             musicType = MusicType.MP3;

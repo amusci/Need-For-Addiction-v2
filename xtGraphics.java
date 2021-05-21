@@ -166,8 +166,8 @@ class xtGraphics extends Panel implements Runnable {
     private int laps;
     private final int[] dested;
     private final String[] names = {
-            "Tornado Shark", "Formula 7", "Wow Caninaro", "La Vite Crab", "Nimi", "MAX Revenge", "Lead Oxide",
-            "Kool Kat", "Drifter X", "Sword of Justice", "High Rider", "EL KING", "Mighty Eight", "M A S H E E N",
+            "Illiminate", "Speedster", "Bison", "Kraken", "Kompakt", "Wanderer", "Ravenborn",
+            "Powerhouse", "Bloodhound", "Sword of Justice", "High Rider", "EL KING", "Mighty Eight", "M A S H E E N",
             "Radical One", "DR Monstaa"
     };
     private int dmcnt;
@@ -182,7 +182,7 @@ class xtGraphics extends Panel implements Runnable {
     }, {
             "Awesome", "Ripping", "Radical"
     }, {
-            "What the...?", "Your a super star!!!!", "Who are you again...?"
+            "Your head okay buddy?", "Alright simmer down there..", "Okay Turbo.."
     }, {
             "surf style", "off the lip", "bounce back"
     }
@@ -3940,7 +3940,11 @@ class xtGraphics extends Panel implements Runnable {
         loadimages();
         //loadnetworkimages();
 
-        cars = new RadicalMusic("music/cars.radq", 200, 7900, 125, macn);
+
+
+        cars = new RadicalMusic("music/cars.mp3");
+
+
         dnload += 27;
         
         /*
@@ -3954,7 +3958,7 @@ class xtGraphics extends Panel implements Runnable {
             pengs[j] = false;
         } while (++j < 5);
         */
-        stages = new RadicalMusic("music/stages.radq", 135, 7800, 125, macn);
+        stages = new RadicalMusic("music/stages.mp3");
         dnload += 91;
         
         
@@ -3988,6 +3992,7 @@ class xtGraphics extends Panel implements Runnable {
         try {
             File soundsZip = new File("data/sounds.radq");
             ZipInputStream soundsInputStream = new ZipInputStream(new FileInputStream(soundsZip));
+
 
             for (ZipEntry soundEntry = soundsInputStream.getNextEntry(); soundEntry != null; soundEntry = soundsInputStream.getNextEntry()) {
                 int size = (int) soundEntry.getSize();
