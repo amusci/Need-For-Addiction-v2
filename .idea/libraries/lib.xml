@@ -7,6 +7,7 @@
     <SOURCES>
       <root url="file://$PROJECT_DIR$/lib/javazoom" />
       <root url="file://$PROJECT_DIR$/lib/src" />
+      <root url="file://$PROJECT_DIR$/lib/java-discord-rpc-master/src/main/java" />
     </SOURCES>
     <jarDirectory url="file://$PROJECT_DIR$/lib" recursive="false" />
   </library>

@@ -1,3 +1,5 @@
+import ds.utils.discord.rpc.DiscordPresence;
+import ds.utils.discord.rpc.DiscordPresenceImpl;
 import fallk.logmaster.HLogger;
 
 import java.awt.*;
@@ -31,9 +33,11 @@ class RunApp extends Panel {
             }
         }
         return icons;
+
     }
 
     public static void main(String[] strings) {
+
         System.runFinalizersOnExit(true);
         HLogger.info("UNFM2 Console"); // Change this to the message of your preference
         try {
@@ -42,9 +46,13 @@ class RunApp extends Panel {
             HLogger.warn("Could not setup System Look&Feel: " + ex.toString());
         }
         startup();
+
     }
 
     private static void startup() {
+        DiscordPresence discord = new DiscordPresenceImpl();
+        discord.start();
+        discord.setPresence("Need For Addiction", "Online","nfadiscord", "nfadiscord");
         frame = new Frame("UNFM2");// Change this to the name of your preference
         frame.setBackground(new Color(0, 0, 0));
         frame.setIgnoreRepaint(true);
@@ -68,9 +76,11 @@ class RunApp extends Panel {
         frame.setVisible(true);
         applet.init();
         applet.start();
+
     }
 
     private static void exitSequence() {
+
         applet.stop();
         frame.removeAll();
         try {
@@ -80,5 +90,6 @@ class RunApp extends Panel {
         applet.destroy();
         applet = null;
         System.exit(0);
+
     }
 }

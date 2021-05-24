@@ -24,7 +24,7 @@ public class GameSparker extends Applet implements Runnable {
     private static final long serialVersionUID = -34048182014310663L;
 
     private static final String[] carModels = {
-            "2000tornados", "formula7", "canyenaro", "lescrab", "nimi", "maxrevenge", "leadoxide", "koolkat", "drifter",
+            "stredecim", "speedster", "bison", "kouki", "adp", "wanderer", "ravenborn", "hummer", "drifter",
             "policecops", "mustang", "king", "audir8", "masheen", "radicalone", "drmonster"
     };
 
