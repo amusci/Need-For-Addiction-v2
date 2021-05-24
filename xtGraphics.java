@@ -614,11 +614,11 @@ class xtGraphics extends Panel implements Runnable {
         app.repaint();*/
 
 
-        if (lastload != -22) {
+        /*if (lastload != -22) {
             lastload = -22;
         } else {
             stages.stop();
-        }
+        }*/
     }
 
     public void inst(Control control) {
@@ -3162,7 +3162,7 @@ class xtGraphics extends Panel implements Runnable {
             tracks[i] = null;
             loadedt[i] = false;
         }
-        stages.play();
+        //stages.play();
         rd.drawImage(select, 273, 45, null);
         if (checkpoints.stage != 1) {
             rd.drawImage(back[pback], 50, 110, null);
@@ -3190,8 +3190,8 @@ class xtGraphics extends Panel implements Runnable {
             fase = 205;
             control.handb = false;
             control.enter = false;
-            stages.stop();
-            stages.unload();
+            cars.stop();
+            cars.unload();
         }
         if (control.right && checkpoints.stage < 17) {
             if (checkpoints.stage != unlocked) {
@@ -3612,7 +3612,17 @@ class xtGraphics extends Panel implements Runnable {
         } while (++i < GameFacts.numberOfStages); //change if more stages
     }
 
+    public void premaini()
+    {
+
+        System.out.println("test");
+        if(!cars.isLoaded())
+            cars = new RadicalMusic("music/cars.mp3");
+
+    }
+
     public void maini(Control control) {
+
         cars.play();
         if (lastload >= 0 && loadedt[lastload]) {
             tracks[lastload].unload();
@@ -4326,6 +4336,7 @@ class xtGraphics extends Panel implements Runnable {
         carsbginflex();
         flatrstart = 0;
         Medium.lightson = false;
+
         pnext = 0;
         pback = 0;
     }
@@ -4528,8 +4539,8 @@ class xtGraphics extends Panel implements Runnable {
         if (control.handb || control.enter) {
             if (flipo == 0 && (sc[0] - 7) * 2 < unlocked) {
                 lastload = -11;
-                cars.stop();
-                cars.unload();
+                //cars.stop();
+                //cars.unload();
                 Medium.crs = false;
                 fase = 58;
             }

@@ -791,7 +791,7 @@ public class GameSparker extends Applet implements Runnable {
             /*
              * Note: that is an L
              */
-            xtgraphics.unlocked = l;
+            xtgraphics.unlocked = 17;
             if (xtgraphics.unlocked != GameFacts.numberOfStages)
                 checkpoints.stage = xtgraphics.unlocked;
             else
@@ -879,6 +879,12 @@ public class GameSparker extends Applet implements Runnable {
                     mouses = 2;
             }
             if (xtgraphics.fase == 10) {
+                xtgraphics.premaini();
+                xtgraphics.fase = 107;
+
+            }
+            if (xtgraphics.fase == 107) {
+
                 xtgraphics.maini(u[0]);
                 xtgraphics.ctachm(xm, ym, mouses, u[0]);
                 if (mouses == 2)
