@@ -61,6 +61,7 @@ public class GameSparker extends Applet implements Runnable {
     private Image offImage;
     private Thread gamer;
     private final Control[] u;
+    public Lights lights[];
     private int mouses;
     private int xm;
     private int ym;
@@ -267,6 +268,7 @@ public class GameSparker extends Applet implements Runnable {
     }
 
     public GameSparker() {
+        lights = new Lights[51];
         u = new Control[51];
         mouses = 0;
         xm = 0;
@@ -775,6 +777,7 @@ public class GameSparker extends Applet implements Runnable {
         do {
             amadness[l] = new Madness(record, xtgraphics, l);
             u[l] = new Control();
+            lights[l] = new Lights();
         } while (++l < 51); //dont touch this
         l = 0;
         float f = 35F;
@@ -1121,6 +1124,13 @@ public class GameSparker extends Applet implements Runnable {
 
                 for (int k12 = 0; k12 < k3; k12++)
                     aconto1[ai2[ai10[k12]]].d(rd);
+
+
+                for (int lightStep = 0; lightStep < 51; lightStep++){
+                    lights[lightStep].brake = (u[lightStep].handb || u[lightStep].down) && amadness[lightStep].gtouch && !lights[lightStep].rev;
+                    lights[lightStep].rev = (u[lightStep].down && amadness[lightStep].speed < 0F) || amadness[lightStep].speed < -5.0F && !u[lightStep].down;
+                    lights[lightStep].changeLights(aconto1[lightStep], rd);
+                }
 
                 if (xtgraphics.starcnt == 0) {
                     int l12 = 0;

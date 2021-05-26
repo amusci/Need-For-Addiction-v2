@@ -258,10 +258,10 @@ public class ContO {
                     if (line.startsWith("lightF")) {
                         byte0 = 1;
                     }
-                    if (line.startsWith("lightB")) {
+                    else if (line.startsWith("lightB")) {
                         byte0 = 2;
                     }
-                    if (line.startsWith("light")) {
+                    else if (line.startsWith("light")) {
                         byte0 = 1;
                     }
                     if (line.startsWith("noOutline")) {
@@ -279,7 +279,8 @@ public class ContO {
                     }
                 }
                 if (line.startsWith("</p>")) {
-                    p[npl] = new Plane(t, ai, ai2, ai1, i, ai3, flag2, k, l, 0, 0, 0, disline, 0, flag3, byte0, flag4);
+                    p[npl] = new Plane(t, ai, ai2, ai1, i, ai3, flag2, k, l, 0, 0, 0, disline, 0, flag3, byte0,
+                            false, false);
                     npl++;
                     flag = false;
                 }
@@ -442,7 +443,7 @@ public class ContO {
             }
             p[i1] = new Plane(t, conto.p[i1].ox, conto.p[i1].oz, conto.p[i1].oy, conto.p[i1].n, conto.p[i1].oc,
                     conto.p[i1].glass, conto.p[i1].gr, conto.p[i1].fs, conto.p[i1].wx, conto.p[i1].wy, conto.p[i1].wz,
-                    conto.disline, conto.p[i1].bfase, conto.p[i1].road, conto.p[i1].light, conto.p[i1].solo);
+                    conto.disline, conto.p[i1].bfase, conto.p[i1].road, conto.p[i1].light, false, false);
         }
 
         x = i;
@@ -1088,4 +1089,79 @@ public class ContO {
             zy += 11;
         }
     }
+
+
+    /**
+     * returns true if the lights are changed
+     *
+     * @return boolean
+     */
+    public boolean brakingStatus() {
+        for (int l3 = 0; l3 < npl; l3++) {
+            if (p[l3].braking) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * returns true if the lights are changed
+     *
+     * @return boolean
+     */
+    public boolean reversingStatus() {
+        for (int l3 = 0; l3 < npl; l3++) {
+            if (p[l3].reversing) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * set the light color to braking color
+     *
+     * @param rd
+     *            graphics
+     */
+    public void brakingLight(Graphics2D rd) {
+        for (int l3 = 0; l3 < npl; l3++) {
+            if (p[l3].light == 2) {
+                p[l3] = new Plane(t, p[l3].ox, p[l3].oz, p[l3].oy, p[l3].n, p[l3].oc, p[l3].glass, p[l3].gr,
+                        p[l3].fs, p[l3].wx, p[l3].wy, p[l3].wz, disline, p[l3].bfase, p[l3].road, 2, true, false);
+            }
+        }
+    }
+
+    /**
+     * set the light color to reversing color
+     *
+     * @param rd
+     *            graphics
+     */
+    public void reversingLight(Graphics2D rd) {
+        for (int l3 = 0; l3 < npl; l3++) {
+            if (p[l3].light == 2) {
+                p[l3] = new Plane(t, p[l3].ox, p[l3].oz, p[l3].oy, p[l3].n, p[l3].oc, p[l3].glass, p[l3].gr,
+                        p[l3].fs, p[l3].wx, p[l3].wy, p[l3].wz, disline, p[l3].bfase, p[l3].road, 2, false, true);
+            }
+        }
+    }
+
+    /**
+     * set the light color to normal
+     *
+     * @param rd
+     *            graphics
+     */
+    public void revertLights(Graphics2D rd) {
+        for (int l3 = 0; l3 < npl; l3++) {
+            if (p[l3].light == 2) {
+                p[l3] = new Plane(t, p[l3].ox, p[l3].oz, p[l3].oy, p[l3].n, p[l3].oc, p[l3].glass, p[l3].gr,
+                        p[l3].fs, p[l3].wx, p[l3].wy, p[l3].wz, disline, p[l3].bfase, p[l3].road, 2, false, false);
+            }
+        }
+    }
 }
+
